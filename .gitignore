@@ -1,0 +1,43 @@
+# 컴파일 산출물
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dylib
+
+# 빌드 디렉토리
+/build/
+/bin/
+/dist/
+
+# CMake 관련 파일
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Visual Studio / CLion 관련 파일
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# macOS 시스템 파일
+.DS_Store
+
+# 로그 및 임시파일
+*.log
+*.tmp
+*.swp
+*~
+
+# 도커 및 컨테이너 관련 (필요시 제외)
+devcontainer.json
+Dockerfile
+
+# 기타
+*.user
+*.suo
