@@ -84,6 +84,10 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
+	// Handle edge cases
+	if (ll->head == NULL || ll->head->next == NULL)
+		return;
+
 	ListNode *end = ll->head;
 	ListNode *prev = NULL, *curr = ll->head;
 
@@ -103,6 +107,16 @@ void moveOddItemsToBack(LinkedList *ll)
 		new_end->next = NULL;
 	}
 
+	// If all nodes are odd (curr == end and end is odd)
+	if (curr == end && curr->item % 2 != 0)
+	{
+		new_end->next = curr;
+		new_end = curr;
+		ll->head = curr->next; // This will be NULL for all-odd case
+		new_end->next = NULL;
+		return;
+	}
+
 	// Update the list head.
 	ll->head = curr;
 
@@ -111,13 +125,13 @@ void moveOddItemsToBack(LinkedList *ll)
 	{
 		if (curr->item % 2 == 0)
 		{
-			// // When current node is even, advance pointers normally.
+			// When current node is even, advance pointers normally.
 			prev = curr;
 			curr = curr->next;
 		}
 		else
 		{
-			// // When current node is odd, remove it and move it to the end.
+			// When current node is odd, remove it and move it to the end.
 			prev->next = curr->next;
 			new_end->next = curr;
 			new_end = curr;
@@ -127,7 +141,7 @@ void moveOddItemsToBack(LinkedList *ll)
 	}
 
 	// Handle the case where the original last node is odd.
-	if (curr->item % 2 != 0 && new_end != end)
+	if (curr->item % 2 != 0 && new_end != end && prev != NULL)
 	{
 		prev->next = curr->next;
 		new_end->next = curr;
